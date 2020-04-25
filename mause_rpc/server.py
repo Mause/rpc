@@ -45,7 +45,7 @@ class Server():
         try:
             res["body"] = self._methods[body["method"]](*body["args"], **body["kwargs"])
         except Exception as e:
-            logging.exception("Call to %s caused exception", body["method"], e)
+            logging.exception("Call to %s caused exception", body["method"])
             res["exception"] = e
 
         ch.basic_publish("", routing_key=properties.reply_to, body=dill.dumps(res))
