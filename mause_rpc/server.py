@@ -8,8 +8,6 @@ import pika
 from pika import ConnectionParameters
 from retry import retry
 
-from .config import get_parameters
-
 logging.basicConfig(level=logging.INFO)
 logging.getLogger("pika").setLevel(logging.WARN)
 
