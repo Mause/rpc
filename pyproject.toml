@@ -1,8 +1,11 @@
 [tool.poetry]
 name = "mause_rpc"
 version = "0.0.3"
-description = ""
+description = "A dumb as hell rpc implementation built on rabbitmq"
 authors = ["Elliana May <me@mause.me>"]
+repository = "https://github.com/Mause/rpc"
+keywords = ["rabbitmq", "rpc"]
+readme = "README"
 license = "MIT"
 
 [tool.poetry.dependencies]
