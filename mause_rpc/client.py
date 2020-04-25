@@ -9,8 +9,6 @@ import dill
 from pika import BasicProperties, BlockingConnection
 from pika.adapters.blocking_connection import BlockingChannel
 
-from .config import get_parameters
-
 
 @dataclass
 class Client:
