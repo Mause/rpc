@@ -5,7 +5,7 @@ description = "A dumb as hell rpc implementation built on rabbitmq"
 authors = ["Elliana May <me@mause.me>"]
 repository = "https://github.com/Mause/rpc"
 keywords = ["rabbitmq", "rpc"]
-readme = "README"
+readme = "README.md"
 license = "MIT"
 
 [tool.poetry.dependencies]
