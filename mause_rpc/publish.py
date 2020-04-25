@@ -17,5 +17,5 @@ check_call(['git', 'commit', '-m', f'Bump to {version}'])
 
 poetry_publish(
     package_root=Path(mause_rpc.__file__).parent.parent,
-    version=mause_rpc.__version__,
+    version=str(version),
 )
