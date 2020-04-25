@@ -4,7 +4,7 @@ import dill
 from pika import BlockingConnection
 from pika.adapters.blocking_connection import BlockingChannel
 
-from .client import Client
+from mause_rpc.client import Client
 
 
 def test_init():
@@ -17,6 +17,6 @@ def test_init():
             dill.loads(body)["key"]
         ].set_result("heyo"),
     )
-    client = Client("", conn, ch)
+    client: Client = Client("", conn, ch)
 
     assert client.hello_world("hi") == 'heyo'
