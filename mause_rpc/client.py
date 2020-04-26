@@ -54,7 +54,7 @@ class Client:
             raise RuntimeError()
 
 
-def get_client(server_queue: str, server_connection_parameters) -> Client:
+def get_client(server_queue: str, server_connection_parameters, timeout=10) -> Client:
     conn = BlockingConnection(server_connection_parameters)
     channel = conn.channel()
 
@@ -62,4 +62,4 @@ def get_client(server_queue: str, server_connection_parameters) -> Client:
     t.daemon = True
     t.start()
 
-    return Client(server_queue, conn, channel)
+    return Client(server_queue, conn, channel, timeout)
