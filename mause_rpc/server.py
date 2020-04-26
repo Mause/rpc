@@ -33,7 +33,7 @@ class Server:
                 queue=self.server_queue, exclusive=True, auto_delete=True
             )
             channel.basic_consume(self.server_queue, self.on_server_rx_rpc_request)
-            logging.info("Ready")
+            logging.info("Ready, waiting on work on %s", self.server_queue)
             channel.start_consuming()
 
     def on_server_rx_rpc_request(self, ch, method_frame, properties, body):
