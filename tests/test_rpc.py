@@ -1,22 +1,45 @@
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch
 
 import dill
-from pika import BlockingConnection
+from mause_rpc.client import Client
+from mause_rpc.server import Server
+from pika import BasicProperties, BlockingConnection
 from pika.adapters.blocking_connection import BlockingChannel
 
-from mause_rpc.client import Client
 
-
-def test_init():
+def test_client():
     conn = MagicMock(
         spec=BlockingConnection, add_callback_threadsafe=lambda func: func()
     )
     ch = MagicMock(
         spec=BlockingChannel,
         basic_publish=lambda body, **kwargs: client._waiting[
-            dill.loads(body)["key"]
-        ].set_result("heyo"),
+            dill.loads(body)['key']
+        ].set_result('heyo'),
     )
-    client: Client = Client("", conn, ch)
+    client: Client = Client('', conn, ch)
 
-    assert client.hello_world("hi") == 'heyo'
+    assert client.hello_world('hi') == 'heyo'
+
+
+@patch('mause_rpc.server.pika.BlockingConnection', spec=BlockingConnection)
+def test_server(bc):
+    server = Server('', '')
+
+    @server.register
+    def hello(name):
+        return 'hello ' + name
+
+    ch = MagicMock(spec=BlockingChannel)
+
+    server.on_server_rx_rpc_request(
+        ch=ch,
+        method_frame=MagicMock(),
+        properties=BasicProperties(reply_to='reply_to'),
+        body=dill.dumps(
+            {'key': 'key', 'args': ('mark',), 'kwargs': {}, 'method': 'hello'}
+        ),
+    )
+
+    call = ch.basic_publish.mock_calls[0]
+    assert dill.loads(call.kwargs['body']) == {'key': 'key', 'body': 'hello mark'}
