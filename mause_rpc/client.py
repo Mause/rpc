@@ -12,6 +12,7 @@ from pika.adapters.blocking_connection import BlockingChannel
 from retry import retry
 
 logging.getLogger("pika").setLevel(logging.WARN)
+logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -61,11 +62,11 @@ def get_client(server_queue: str, server_connection_parameters, timeout=10) -> C
 
     @retry()
     def worker():
-        logging.debug('starting worker listening on %s', server_queue)
+        logger.debug('starting worker listening on %s', server_queue)
         try:
             channel.start_consuming()
         except Exception as e:
-            logging.exception('worker died')
+            logger.exception('worker died')
 
     t = Thread(target=worker)
     t.daemon = True
