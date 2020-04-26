@@ -18,6 +18,7 @@ class Client:
     server_queue: str
     conn: BlockingConnection
     channel: BlockingChannel
+    timeout: int = field(default=10)
     _waiting: Dict[str, Future] = field(default_factory=dict)
 
     def __post_init__(self):
@@ -37,7 +38,7 @@ class Client:
                 properties=BasicProperties(reply_to="amq.rabbitmq.reply-to"),
             )
         )
-        return f.result(timeout=10)
+        return f.result(timeout=self.timeout)
 
     def __getattr__(self, method):
         return partial(self.call, method)
