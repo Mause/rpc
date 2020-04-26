@@ -1,4 +1,14 @@
 
+0.0.9 / 2020-04-26
+==================
+
+  * Turn down pika logging
+  * Fix up code sample formatting
+  * Add dependabot config
+  * Format code
+  * Add server test
+  * Add pre-commit
+
 0.0.8 / 2020-04-26
 ==================
 
