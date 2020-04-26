@@ -1,4 +1,12 @@
 
+0.0.11 / 2020-04-26
+===================
+
+  * Use own logger
+  * Don't let worker die so easily
+  * More logging
+  * Expose timeout param
+
 0.0.10 / 2020-04-26
 ===================
 
