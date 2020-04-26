@@ -1,3 +1,4 @@
+import logging
 from concurrent.futures import Future
 from dataclasses import dataclass, field
 from functools import partial
@@ -8,6 +9,8 @@ from uuid import uuid4
 import dill
 from pika import BasicProperties, BlockingConnection
 from pika.adapters.blocking_connection import BlockingChannel
+
+logging.getLogger("pika").setLevel(logging.WARN)
 
 
 @dataclass
