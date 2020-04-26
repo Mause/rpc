@@ -13,12 +13,12 @@ server = Server(rpc_queue, 'rabbitmq://...')
 
 
 @server.register
-def hello(name:str) -> str:
+def hello(name: str) -> str:
     return 'hello ' + name
 
 
 @server.register
-def div(a:int, b: int):
+def div(a: int, b: int) -> float:
     if b == 0:
         raise ZeroDivisionError()
     return a / b
