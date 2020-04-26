@@ -37,9 +37,11 @@ from mause_rpc.client import get_client
 rpc_queue = 'rpc.queue'
 client = get_client(rpc_queue, 'rabbitmq://...')
 
-assert client.hello('mark') == 'hello mark'
-assert client.div(5, 2) == 2.5
 
-with pytest.raises(ZeroDivisionError):
-    client.div(5, 0)
+def test_basic_functionality():
+    assert client.hello('mark') == 'hello mark'
+    assert client.div(5, 2) == 2.5
+
+    with pytest.raises(ZeroDivisionError):
+        client.div(5, 0)
 ```

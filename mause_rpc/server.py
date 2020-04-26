@@ -13,7 +13,7 @@ logging.getLogger("pika").setLevel(logging.WARN)
 
 
 @dataclass
-class Server():
+class Server:
     server_queue: str
     connection_params: ConnectionParameters
     _methods: Dict[str, Callable] = field(default_factory=dict)
@@ -29,7 +29,9 @@ class Server():
         with pika.BlockingConnection(self.connection_params) as conn:
             channel = conn.channel()
 
-            channel.queue_declare(queue=self.server_queue, exclusive=True, auto_delete=True)
+            channel.queue_declare(
+                queue=self.server_queue, exclusive=True, auto_delete=True
+            )
             channel.basic_consume(self.server_queue, self.on_server_rx_rpc_request)
             logging.info("Ready")
             channel.start_consuming()
