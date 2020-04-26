@@ -1,4 +1,10 @@
 
+0.0.12 / 2020-04-26
+===================
+
+  * Store worker thread in client
+  * Remove default from class
+
 0.0.11 / 2020-04-26
 ===================
 
