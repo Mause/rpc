@@ -20,7 +20,7 @@ class Client:
     server_queue: str
     conn: BlockingConnection
     channel: BlockingChannel
-    timeout: int = field(default=10)
+    timeout: int
     _waiting: Dict[str, Future] = field(default_factory=dict)
 
     def __post_init__(self):
