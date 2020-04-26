@@ -21,6 +21,7 @@ class Client:
     conn: BlockingConnection
     channel: BlockingChannel
     timeout: int
+    _thread: Thread
     _waiting: Dict[str, Future] = field(default_factory=dict)
 
     def __post_init__(self):
@@ -72,4 +73,4 @@ def get_client(server_queue: str, server_connection_parameters, timeout=10) -> C
     t.daemon = True
     t.start()
 
-    return Client(server_queue, conn, channel, timeout)
+    return Client(server_queue, conn, channel, timeout, _thread=t)
