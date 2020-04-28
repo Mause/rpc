@@ -9,6 +9,7 @@ from uuid import uuid4
 import dill
 from pika import BasicProperties, BlockingConnection
 from pika.adapters.blocking_connection import BlockingChannel
+from pika.connection import Parameters
 from retry import retry
 
 logging.getLogger("pika").setLevel(logging.WARN)
@@ -57,8 +58,10 @@ class Client:
             raise RuntimeError()
 
 
-def get_client(server_queue: str, server_connection_parameters, timeout=10) -> Client:
-    conn = BlockingConnection(server_connection_parameters)
+def get_client(
+    server_queue: str, connection_parameters: Parameters, timeout=10
+) -> Client:
+    conn = BlockingConnection(connection_parameters)
     channel = conn.channel()
 
     @retry()

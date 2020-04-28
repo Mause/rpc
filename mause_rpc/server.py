@@ -6,7 +6,7 @@ from typing import Callable, Dict, Union
 
 import dill
 import pika
-from pika import ConnectionParameters
+from pika.connection import Parameters
 from pika.exceptions import AMQPConnectionError, ChannelClosedByBroker
 from retry import retry
 
@@ -17,7 +17,7 @@ logging.getLogger("pika").setLevel(logging.WARN)
 @dataclass
 class Server:
     server_queue: str
-    connection_params: ConnectionParameters
+    connection_params: Parameters
     _methods: Dict[str, Callable] = field(default_factory=dict)
 
     def register(self, method: Union[str, Callable]):
