@@ -6,6 +6,7 @@ from typing import Callable, Dict
 import dill
 import pika
 from pika import ConnectionParameters
+from pika.exceptions import AMQPConnectionError, ChannelClosedByBroker
 from retry import retry
 
 logging.basicConfig(level=logging.INFO)
@@ -23,8 +24,8 @@ class Server:
         return method
 
     @retry(socket.gaierror, delay=10, jitter=(1, 3))
-    @retry(pika.exceptions.ChannelClosedByBroker, delay=10, jitter=(1, 3))
-    @retry(pika.exceptions.AMQPConnectionError, delay=5, jitter=(1, 3))
+    @retry(ChannelClosedByBroker, delay=10, jitter=(1, 3))
+    @retry(AMQPConnectionError, delay=5, jitter=(1, 3))
     def serve(self):
         with pika.BlockingConnection(self.connection_params) as conn:
             channel = conn.channel()
