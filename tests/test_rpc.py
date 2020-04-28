@@ -17,7 +17,7 @@ def test_client():
             dill.loads(body)['key']
         ].set_result('heyo'),
     )
-    client: Client = Client('', conn, ch)
+    client: Client = Client('', conn, ch, 10, MagicMock())
 
     assert client.hello_world('hi') == 'heyo'
 
