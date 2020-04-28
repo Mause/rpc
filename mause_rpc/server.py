@@ -1,7 +1,8 @@
 import logging
 import socket
 from dataclasses import dataclass, field
-from typing import Callable, Dict
+from functools import partial
+from typing import Callable, Dict, Union
 
 import dill
 import pika
@@ -19,8 +20,14 @@ class Server:
     connection_params: ConnectionParameters
     _methods: Dict[str, Callable] = field(default_factory=dict)
 
-    def register(self, method: Callable):
-        self._methods[method.__name__] = method
+    def register(self, method: Union[str, Callable]):
+        if isinstance(method, str):
+            return partial(self._register, method)
+        else:
+            return self._register(method.__name__, method)
+
+    def _register(self, name, method):
+        self._methods[name] = method
         return method
 
     @retry(socket.gaierror, delay=10, jitter=(1, 3))

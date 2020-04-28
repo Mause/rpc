@@ -43,3 +43,17 @@ def test_server(bc):
 
     call = ch.basic_publish.mock_calls[0]
     assert dill.loads(call.kwargs['body']) == {'key': 'key', 'body': 'hello mark'}
+
+
+def test_register():
+    server = Server('', MagicMock())
+
+    @server.register('hello')
+    def world():
+        ...
+
+    @server.register
+    def help():
+        ...
+
+    assert set(server._methods) == {'hello', 'help'}
