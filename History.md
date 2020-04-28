@@ -1,4 +1,12 @@
 
+0.0.13 / 2020-04-28
+===================
+
+  * Add missing param
+  * Allow specifying method names
+  * Tidy imports
+  * Add blacken-docs
+
 0.0.12 / 2020-04-26
 ===================
 
