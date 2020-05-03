@@ -40,6 +40,7 @@ class Client:
                     {"method": method, "args": args, "kwargs": kwargs, "key": key}
                 ),
                 properties=BasicProperties(reply_to="amq.rabbitmq.reply-to"),
+                immediate=True,
             )
         )
         return f.result(timeout=self.timeout)
