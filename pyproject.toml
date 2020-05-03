@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mause_rpc"
-version = "0.0.13"
+version = "0.0.14"
 description = "A dumb as hell rpc implementation built on rabbitmq"
 authors = ["Elliana May <me@mause.me>"]
 repository = "https://github.com/Mause/rpc"

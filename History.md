@@ -1,4 +1,14 @@
 
+0.0.14 / 2020-05-03
+===================
+
+  * Amend example
+  * Set immediate param
+  * Add mypy config
+  * Poetry, not pipenv
+  * Fix types
+  * Add test action
+
 0.0.13 / 2020-04-28
 ===================
 
