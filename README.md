@@ -17,7 +17,7 @@ def hello(name: str) -> str:
     return 'hello ' + name
 
 
-@server.register
+@server.register('divide')
 def div(a: int, b: int) -> float:
     if b == 0:
         raise ZeroDivisionError()
@@ -40,8 +40,8 @@ client = get_client(rpc_queue, 'rabbitmq://...')
 
 def test_basic_functionality():
     assert client.hello('mark') == 'hello mark'
-    assert client.div(5, 2) == 2.5
+    assert client.divide(5, 2) == 2.5
 
     with pytest.raises(ZeroDivisionError):
-        client.div(5, 0)
+        client.divide(5, 0)
 ```
