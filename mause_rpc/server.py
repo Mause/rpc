@@ -2,7 +2,7 @@ import logging
 import socket
 from dataclasses import dataclass, field
 from functools import partial
-from typing import Callable, Dict, Union
+from typing import Callable, Dict, Optional, Union
 
 import dill
 import pika
@@ -18,6 +18,7 @@ logging.getLogger("pika").setLevel(logging.WARN)
 class Server:
     server_queue: str
     connection_params: Parameters
+    server_name: Optional[str] = None
     _methods: Dict[str, Callable] = field(default_factory=dict)
 
     def register(self, method: Union[str, Callable]):
@@ -40,7 +41,11 @@ class Server:
             channel.queue_declare(
                 queue=self.server_queue, exclusive=True, auto_delete=True
             )
-            channel.basic_consume(self.server_queue, self.on_server_rx_rpc_request)
+            channel.basic_consume(
+                self.server_queue,
+                self.on_server_rx_rpc_request,
+                consumer_tag=self.server_name,
+            )
             logging.info("Ready, waiting on work on %s", self.server_queue)
             channel.start_consuming()
 
