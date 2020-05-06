@@ -24,7 +24,7 @@ black = "^19.10b0"
 flake8 = "^3.7.9"
 isort = "^4.3.21"
 poetry-publish = "^0.3.1"
-semver = "^2.9.1"
+semver = "^2.10.0"
 pre-commit = "^2.3.0"
 
 [build-system]
