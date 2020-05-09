@@ -38,7 +38,7 @@ class Client:
         self.conn = BlockingConnection(self.connection_parameters)
         self.channel = self.conn.channel()
 
-        t = Thread(target=self.worker)
+        self._thread = t = Thread(target=self.worker)
         t.daemon = True
         t.start()
 
