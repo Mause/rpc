@@ -1,4 +1,11 @@
 
+0.0.17 / 2020-05-09
+===================
+
+  * Rewrite to allow reconnecting
+  * Add pdbpp
+  * Bump semver from 2.9.1 to 2.10.0
+
 0.0.16 / 2020-05-04
 ===================
 
