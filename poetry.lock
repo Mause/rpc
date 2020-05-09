@@ -740,7 +740,7 @@ python-versions = "*"
 version = "0.3"
 
 [metadata]
-content-hash = "0dd40c7dafd703532f72edcc3eacb9cd8b6c7b3334528789aab7ad57c47382c5"
+content-hash = "6a31cd916340a45642b4d71cf347cd5da22a589ad800619b76920aa53811286c"
 python-versions = "^3.8"
 
 [metadata.files]
