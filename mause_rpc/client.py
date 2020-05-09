@@ -19,14 +19,32 @@ logger = logging.getLogger(__name__)
 @dataclass
 class Client:
     server_queue: str
-    conn: BlockingConnection
-    channel: BlockingChannel
     timeout: int
-    _thread: Thread
+    connection_parameters: Parameters
+    _thread: Thread = None
+    conn: BlockingConnection = None
+    channel: BlockingChannel = None
     _waiting: Dict[str, Future] = field(default_factory=dict)
 
-    def __post_init__(self):
+    def worker(self):
+        logger.debug('starting worker listening on %s', self.server_queue)
+        try:
+            self.channel.start_consuming()
+        except Exception as e:
+            logger.exception('worker died')
+            self.connect()
+
+    def connect(self) -> 'Client':
+        self.conn = BlockingConnection(self.connection_parameters)
+        self.channel = self.conn.channel()
+
+        t = Thread(target=self.worker)
+        t.daemon = True
+        t.start()
+
         self.channel.basic_consume("amq.rabbitmq.reply-to", self.recieve, auto_ack=True)
+
+        return self
 
     def call(self, method, *args, **kwargs):
         f: Future = Future()
@@ -61,19 +79,4 @@ class Client:
 def get_client(
     server_queue: str, connection_parameters: Parameters, timeout=10
 ) -> Client:
-    conn = BlockingConnection(connection_parameters)
-    channel = conn.channel()
-
-    @retry()
-    def worker():
-        logger.debug('starting worker listening on %s', server_queue)
-        try:
-            channel.start_consuming()
-        except Exception as e:
-            logger.exception('worker died')
-
-    t = Thread(target=worker)
-    t.daemon = True
-    t.start()
-
-    return Client(server_queue, conn, channel, timeout, _thread=t)
+    return Client(server_queue, timeout, connection_parameters).connect()

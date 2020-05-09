@@ -5,19 +5,21 @@ from mause_rpc.client import Client
 from mause_rpc.server import Server
 from pika import BasicProperties, BlockingConnection
 from pika.adapters.blocking_connection import BlockingChannel
+from pika.connection import Parameters
 
 
-def test_client():
-    conn = MagicMock(
-        spec=BlockingConnection, add_callback_threadsafe=lambda func: func()
-    )
-    ch = MagicMock(
+@patch('mause_rpc.client.BlockingConnection')
+def test_client(bc):
+    bc = bc.return_value
+    bc.add_callback_threadsafe.side_effect = lambda func: func()
+    bc.channel.return_value = MagicMock(
         spec=BlockingChannel,
         basic_publish=lambda body, **kwargs: client._waiting[
             dill.loads(body)['key']
         ].set_result('heyo'),
     )
-    client: Client = Client('', conn, ch, 10, MagicMock())
+    params = MagicMock(spec=Parameters)
+    client: Client = Client('', 10, params).connect()
 
     assert client.hello_world('hi') == 'heyo'
 
