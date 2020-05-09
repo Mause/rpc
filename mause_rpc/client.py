@@ -1,4 +1,5 @@
 import logging
+import time
 from concurrent.futures import Future
 from dataclasses import dataclass, field
 from functools import partial
@@ -27,6 +28,7 @@ class Client:
     _waiting: Dict[str, Future] = field(default_factory=dict)
 
     def worker(self):
+        time.sleep(1.5)
         logger.debug('starting worker listening on %s', self.server_queue)
         try:
             self.channel.start_consuming()
