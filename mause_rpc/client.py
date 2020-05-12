@@ -4,7 +4,7 @@ from concurrent.futures import Future
 from dataclasses import dataclass, field
 from functools import partial
 from threading import Thread
-from typing import Dict
+from typing import Dict, Optional
 from uuid import uuid4
 
 import dill
@@ -22,9 +22,9 @@ class Client:
     server_queue: str
     timeout: int
     connection_parameters: Parameters
-    _thread: Thread = None
-    conn: BlockingConnection = None
-    channel: BlockingChannel = None
+    _thread: Optional[Thread] = None
+    conn: Optional[BlockingConnection] = None
+    channel: Optional[BlockingChannel] = None
     _waiting: Dict[str, Future] = field(default_factory=dict)
 
     def worker(self):
