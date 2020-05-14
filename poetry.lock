@@ -613,7 +613,7 @@ description = "Python helper for Semantic Versioning (http://semver.org/)"
 name = "semver"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "2.10.0"
+version = "2.10.1"
 
 [[package]]
 category = "dev"
@@ -731,7 +731,7 @@ python-versions = "*"
 version = "0.3"
 
 [metadata]
-content-hash = "59c750ade5eb843f871d4fdd895e526dd73062e4570c1cf75d65708c41937212"
+content-hash = "61eaaf94bc893188308d4cda701d85c3f9b7c57a3c6f4fe6e7564383d3beb437"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -1035,8 +1035,8 @@ secretstorage = [
     {file = "SecretStorage-3.1.2.tar.gz", hash = "sha256:15da8a989b65498e29be338b3b279965f1b8f09b9668bd8010da183024c8bff6"},
 ]
 semver = [
-    {file = "semver-2.10.0-py2.py3-none-any.whl", hash = "sha256:a0fd30b371474a6ffcbb106074187bdacb4e17fbdd80abc9dffebccc420993a2"},
-    {file = "semver-2.10.0.tar.gz", hash = "sha256:4ae5f926f2c4c1aa0612f95d4d502c838f41526f0b71e20cc706c28aa9763c47"},
+    {file = "semver-2.10.1-py2.py3-none-any.whl", hash = "sha256:21eb9deafc627dfd122e294f96acd0deadf1b5b7758ab3bbdf3698155dca4705"},
+    {file = "semver-2.10.1.tar.gz", hash = "sha256:b08a84f604ef579e474ce448672a05c8d50d1ee0b24cee9fb58a12b260e4d0dc"},
 ]
 six = [
     {file = "six-1.14.0-py2.py3-none-any.whl", hash = "sha256:8f3cd2e254d8f793e7f3d6d9df77b92252b52637291d0f0da013c76ea2724b6c"},
