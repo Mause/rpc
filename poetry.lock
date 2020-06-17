@@ -402,7 +402,7 @@ description = "A framework for managing and maintaining multi-language pre-commi
 name = "pre-commit"
 optional = false
 python-versions = ">=3.6.1"
-version = "2.4.0"
+version = "2.5.1"
 
 [package.dependencies]
 cfgv = ">=2.0.0"
@@ -731,7 +731,7 @@ python-versions = "*"
 version = "0.3"
 
 [metadata]
-content-hash = "7704200b7b56d296ee5db2867443a39ee76ed9ab6bed559763edba889d869e66"
+content-hash = "c196c0f6ced58d9786a918131a4c0b92d552d0e7230ff883a4e6b6e5132ae44a"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -931,8 +931,8 @@ poetry-publish = [
     {file = "poetry_publish-0.3.1-py3-none-any.whl", hash = "sha256:398cf64dd0215c280fb70c451ce7cdbf08f704184f5e2dad287c66a96a938210"},
 ]
 pre-commit = [
-    {file = "pre_commit-2.4.0-py2.py3-none-any.whl", hash = "sha256:5559e09afcac7808933951ffaf4ff9aac524f31efbc3f24d021540b6c579813c"},
-    {file = "pre_commit-2.4.0.tar.gz", hash = "sha256:703e2e34cbe0eedb0d319eff9f7b83e2022bb5a3ab5289a6a8841441076514d0"},
+    {file = "pre_commit-2.5.1-py2.py3-none-any.whl", hash = "sha256:c5c8fd4d0e1c363723aaf0a8f9cba0f434c160b48c4028f4bae6d219177945b3"},
+    {file = "pre_commit-2.5.1.tar.gz", hash = "sha256:da463cf8f0e257f9af49047ba514f6b90dbd9b4f92f4c8847a3ccd36834874c7"},
 ]
 py = [
     {file = "py-1.8.1-py2.py3-none-any.whl", hash = "sha256:c20fdd83a5dbc0af9efd622bee9a5564e278f6380fffcacc43ba6f43db2813b0"},
