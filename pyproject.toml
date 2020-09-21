@@ -18,7 +18,7 @@ retry = "^0.9.2"
 skip_string_normalization=true
 
 [tool.poetry.dev-dependencies]
-pytest = "^6.0.1"
+pytest = "^6.0.2"
 mypy = "^0.782"
 black = "^20.8b1"
 flake8 = "^3.8.3"
