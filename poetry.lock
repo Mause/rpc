@@ -485,7 +485,7 @@ description = "pytest: simple powerful testing with Python"
 name = "pytest"
 optional = false
 python-versions = ">=3.5"
-version = "6.1.0"
+version = "6.1.1"
 
 [package.dependencies]
 atomicwrites = ">=1.0"
@@ -724,7 +724,7 @@ python-versions = "*"
 version = "0.3"
 
 [metadata]
-content-hash = "ee7fa4a0f8ce251082f73cd68fe9caeeaa89bad89c8abbe436254d68ac5a90b1"
+content-hash = "4c7af19a4443b419ed1be3e6e568e7ed7fe5f9ee96fa7a30d705d1dbf70ff1fe"
 lock-version = "1.0"
 python-versions = "^3.8"
 
@@ -960,8 +960,8 @@ pyrepl = [
     {file = "pyrepl-0.9.0.tar.gz", hash = "sha256:292570f34b5502e871bbb966d639474f2b57fbfcd3373c2d6a2f3d56e681a775"},
 ]
 pytest = [
-    {file = "pytest-6.1.0-py3-none-any.whl", hash = "sha256:1cd09785c0a50f9af72220dd12aa78cfa49cbffc356c61eab009ca189e018a33"},
-    {file = "pytest-6.1.0.tar.gz", hash = "sha256:d010e24666435b39a4cf48740b039885642b6c273a3f77be3e7e03554d2806b7"},
+    {file = "pytest-6.1.1-py3-none-any.whl", hash = "sha256:7a8190790c17d79a11f847fba0b004ee9a8122582ebff4729a082c109e81a4c9"},
+    {file = "pytest-6.1.1.tar.gz", hash = "sha256:8f593023c1a0f916110285b6efd7f99db07d59546e3d8c36fc60e2ab05d3be92"},
 ]
 python-creole = [
     {file = "python-creole-1.4.6.tar.gz", hash = "sha256:7e568876b7bfc9b9637eaa3d278fb4e3af896632800b2d068d2c27ee831c2678"},
