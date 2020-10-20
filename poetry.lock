@@ -612,7 +612,7 @@ jeepney = ">=0.4.2"
 
 [[package]]
 name = "semver"
-version = "2.10.2"
+version = "2.12.0"
 description = "Python helper for Semantic Versioning (http://semver.org/)"
 category = "dev"
 optional = false
@@ -727,7 +727,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "54ea2cd6b14b58e15c9533f53d9e006e17654b5f24d95cf80dd41f9a2f38e6e9"
+content-hash = "68a39f3b7149c46a8a4915b3e9182bdaf878efa8f202f55c19a365bf434b7fe9"
 
 [metadata.files]
 appdirs = [
@@ -1033,8 +1033,8 @@ secretstorage = [
     {file = "SecretStorage-3.1.2.tar.gz", hash = "sha256:15da8a989b65498e29be338b3b279965f1b8f09b9668bd8010da183024c8bff6"},
 ]
 semver = [
-    {file = "semver-2.10.2-py2.py3-none-any.whl", hash = "sha256:21e80ca738975ed513cba859db0a0d2faca2380aef1962f48272ebf9a8a44bd4"},
-    {file = "semver-2.10.2.tar.gz", hash = "sha256:c0a4a9d1e45557297a722ee9bac3de2ec2ea79016b6ffcaca609b0bc62cf4276"},
+    {file = "semver-2.12.0-py2.py3-none-any.whl", hash = "sha256:a7b14edf94747ebdd08a5ee7c1d0366b039cf144f0e0eba6553b2c6d2bf9b6f8"},
+    {file = "semver-2.12.0.tar.gz", hash = "sha256:9661f6920fe546b70c7cdde8ca6420d852516efdfa2dbc1e58ab5972e773f43d"},
 ]
 six = [
     {file = "six-1.14.0-py2.py3-none-any.whl", hash = "sha256:8f3cd2e254d8f793e7f3d6d9df77b92252b52637291d0f0da013c76ea2724b6c"},
