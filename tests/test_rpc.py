@@ -1,11 +1,12 @@
 from unittest.mock import MagicMock, patch
 
 import dill
-from mause_rpc.client import Client
-from mause_rpc.server import Server
 from pika import BasicProperties, BlockingConnection
 from pika.adapters.blocking_connection import BlockingChannel
 from pika.connection import Parameters
+
+from mause_rpc.client import Client
+from mause_rpc.server import Server
 
 
 @patch('mause_rpc.client.BlockingConnection')
