@@ -394,7 +394,7 @@ twine = "*"
 
 [[package]]
 name = "pre-commit"
-version = "2.9.2"
+version = "2.9.3"
 description = "A framework for managing and maintaining multi-language pre-commit hooks."
 category = "dev"
 optional = false
@@ -716,7 +716,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "b7032ae5db8e027c48df68c75504956ccdc9fbb152b8d0e561e14114961e4901"
+content-hash = "30c2c2cbc8d6433e2fc591536f744735625913ec73efe4f115e31138993e9214"
 
 [metadata.files]
 appdirs = [
@@ -916,8 +916,8 @@ poetry-publish = [
     {file = "poetry_publish-0.4.0-py3-none-any.whl", hash = "sha256:de449fe0ff24f753e2d62e7dc7812b328b32df6fd3f3e6e84ec3d8cf352239f5"},
 ]
 pre-commit = [
-    {file = "pre_commit-2.9.2-py2.py3-none-any.whl", hash = "sha256:949b13efb7467ae27e2c8f9e83434dacf2682595124d8902554a4e18351e5781"},
-    {file = "pre_commit-2.9.2.tar.gz", hash = "sha256:e31c04bc23741194a7c0b983fe512801e151a0638c6001c49f2bd034f8a664a1"},
+    {file = "pre_commit-2.9.3-py2.py3-none-any.whl", hash = "sha256:6c86d977d00ddc8a60d68eec19f51ef212d9462937acf3ea37c7adec32284ac0"},
+    {file = "pre_commit-2.9.3.tar.gz", hash = "sha256:ee784c11953e6d8badb97d19bc46b997a3a9eded849881ec587accd8608d74a4"},
 ]
 py = [
     {file = "py-1.9.0-py2.py3-none-any.whl", hash = "sha256:366389d1db726cd2fcfc79732e75410e5fe4d31db13692115529d34069a043c2"},
