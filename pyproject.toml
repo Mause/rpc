@@ -25,7 +25,7 @@ flake8 = "^3.8.4"
 isort = "^5.7.0"
 poetry-publish = "^0.4.0"
 semver = "^2.13.0"
-pre-commit = "^2.9.3"
+pre-commit = "^2.10.0"
 pdbpp = "^0.10.2"
 
 [build-system]
