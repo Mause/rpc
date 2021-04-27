@@ -31,9 +31,9 @@ class Server:
         self._methods[name] = method
         return method
 
-    @retry(socket.gaierror, delay=10, jitter=(1, 3))
-    @retry(ChannelClosedByBroker, delay=10, jitter=(1, 3))
-    @retry(AMQPConnectionError, delay=5, jitter=(1, 3))
+    @retry(socket.gaierror, delay=10, jitter=3)
+    @retry(ChannelClosedByBroker, delay=10, jitter=3)
+    @retry(AMQPConnectionError, delay=5, jitter=3)
     def serve(self):
         with pika.BlockingConnection(self.connection_params) as conn:
             channel = conn.channel()
