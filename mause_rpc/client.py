@@ -16,6 +16,8 @@ from retry import retry
 logging.getLogger("pika").setLevel(logging.WARN)
 logger = logging.getLogger(__name__)
 
+REPLY_TO = "amq.rabbitmq.reply-to"
+
 
 @dataclass
 class Client:
@@ -27,7 +29,9 @@ class Client:
     channel: Optional[BlockingChannel] = None
     _waiting: Dict[str, Future] = field(default_factory=dict)
 
-    def worker(self):
+    def worker(self) -> None:
+        assert self.channel
+
         time.sleep(1.5)
         logger.debug('starting worker listening on %s', self.server_queue)
         try:
@@ -44,11 +48,13 @@ class Client:
         t.daemon = True
         t.start()
 
-        self.channel.basic_consume("amq.rabbitmq.reply-to", self.recieve, auto_ack=True)
+        self.channel.basic_consume(REPLY_TO, self.recieve, auto_ack=True)
 
         return self
 
     def call(self, method, *args, **kwargs):
+        assert self.conn and self.channel
+
         f: Future = Future()
         key = uuid4().hex
         self._waiting[key] = f
@@ -59,7 +65,7 @@ class Client:
                 body=dill.dumps(
                     {"method": method, "args": args, "kwargs": kwargs, "key": key}
                 ),
-                properties=BasicProperties(reply_to="amq.rabbitmq.reply-to"),
+                properties=BasicProperties(reply_to=REPLY_TO),
             )
         )
         return f.result(timeout=self.timeout)
