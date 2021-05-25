@@ -21,7 +21,7 @@ skip_string_normalization=true
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.1"
 mypy = "^0.812"
-black = "^21.5b0"
+black = "^21.5b1"
 flake8 = "^3.8.4"
 isort = "^5.8.0"
 poetry-publish = "^0.4.0"
