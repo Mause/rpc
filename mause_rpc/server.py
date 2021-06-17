@@ -21,20 +21,20 @@ class Server:
     server_name: Optional[str] = None
     _methods: Dict[str, Callable] = field(default_factory=dict)
 
-    def register(self, method: Union[str, Callable]):
+    def register(self, method: Union[str, Callable]) -> Union[str, Callable]:
         if isinstance(method, str):
             return partial(self._register, method)
         else:
             return self._register(method.__name__, method)
 
-    def _register(self, name, method):
+    def _register(self, name: str, method: Callable) -> Callable:
         self._methods[name] = method
         return method
 
     @retry(socket.gaierror, delay=10, jitter=3)
     @retry(ChannelClosedByBroker, delay=10, jitter=3)
     @retry(AMQPConnectionError, delay=5, jitter=3)
-    def serve(self):
+    def serve(self) -> None:
         with pika.BlockingConnection(self.connection_params) as conn:
             channel = conn.channel()
 
@@ -49,7 +49,7 @@ class Server:
             logging.info("Ready, waiting on work on %s", self.server_queue)
             channel.start_consuming()
 
-    def on_server_rx_rpc_request(self, ch, method_frame, properties, body):
+    def on_server_rx_rpc_request(self, ch, method_frame, properties, body) -> None:
         body = dill.loads(body)
         logging.info("RPC Server got request: %s", body)
 
