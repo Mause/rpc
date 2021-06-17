@@ -4,7 +4,7 @@ from concurrent.futures import Future
 from dataclasses import dataclass, field
 from functools import partial
 from threading import Thread
-from typing import Dict, Optional
+from typing import Dict, Optional, TypeVar, Callable
 from uuid import uuid4
 
 import dill
@@ -17,6 +17,7 @@ logging.getLogger("pika").setLevel(logging.WARN)
 logger = logging.getLogger(__name__)
 
 REPLY_TO = "amq.rabbitmq.reply-to"
+T = TypeVar('T')
 
 
 @dataclass
@@ -52,7 +53,7 @@ class Client:
 
         return self
 
-    def call(self, method, *args, **kwargs):
+    def call(self, method: str, *args, **kwargs) -> T:
         assert self.conn and self.channel
 
         f: Future = Future()
@@ -70,10 +71,10 @@ class Client:
         )
         return f.result(timeout=self.timeout)
 
-    def __getattr__(self, method):
+    def __getattr__(self, method) -> Callable:
         return partial(self.call, method)
 
-    def recieve(self, ch, method_frame, properties, body):
+    def recieve(self, ch, method_frame, properties, body) -> None:
         body = dill.loads(body)
         f = self._waiting.pop(body["key"])
         if "body" in body:
