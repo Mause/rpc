@@ -51,11 +51,11 @@ def test_server(bc: BlockingConnection) -> None:
 def test_register() -> None:
     server = Server('', MagicMock())
 
-    @server.register('hello')  # type: ignore
+    @server.register('hello')
     def world() -> None:
         ...
 
-    @server.register  # type: ignore
+    @server.register
     def help() -> None:
         ...
 

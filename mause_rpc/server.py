@@ -2,7 +2,7 @@ import logging
 import socket
 from dataclasses import dataclass, field
 from functools import partial
-from typing import Callable, Dict, Optional, Union
+from typing import Callable, Dict, Optional, TypeVar, overload
 
 import dill
 import pika
@@ -15,6 +15,8 @@ from retry import retry
 logging.basicConfig(level=logging.INFO)
 logging.getLogger("pika").setLevel(logging.WARN)
 
+T = TypeVar('T')
+
 
 @dataclass
 class Server:
@@ -23,7 +25,15 @@ class Server:
     server_name: Optional[str] = None
     _methods: Dict[str, Callable] = field(default_factory=dict)
 
-    def register(self, method: Union[str, Callable]) -> Union[str, Callable]:
+    @overload
+    def register(self, method: str) -> Callable[[Callable[..., T]], Callable[..., T]]:
+        ...
+
+    @overload
+    def register(self, method: Callable[..., T]) -> Callable[..., T]:
+        ...
+
+    def register(self, method):  # type: ignore
         if isinstance(method, str):
             return partial(self._register, method)
         else:
