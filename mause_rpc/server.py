@@ -6,8 +6,10 @@ from typing import Callable, Dict, Optional, Union
 
 import dill
 import pika
+from pika.channel import BlockingChannel
 from pika.connection import Parameters
 from pika.exceptions import AMQPConnectionError, ChannelClosedByBroker
+from pika.frame import Method
 from retry import retry
 
 logging.basicConfig(level=logging.INFO)
@@ -31,9 +33,9 @@ class Server:
         self._methods[name] = method
         return method
 
-    @retry(socket.gaierror, delay=10, jitter=3)
-    @retry(ChannelClosedByBroker, delay=10, jitter=3)
-    @retry(AMQPConnectionError, delay=5, jitter=3)
+    @retry(socket.gaierror, delay=10, jitter=3)  # type: ignore
+    @retry(ChannelClosedByBroker, delay=10, jitter=3)  # type: ignore
+    @retry(AMQPConnectionError, delay=5, jitter=3)  # type: ignore
     def serve(self) -> None:
         with pika.BlockingConnection(self.connection_params) as conn:
             channel = conn.channel()
@@ -49,8 +51,14 @@ class Server:
             logging.info("Ready, waiting on work on %s", self.server_queue)
             channel.start_consuming()
 
-    def on_server_rx_rpc_request(self, ch, method_frame, properties, body) -> None:
-        body = dill.loads(body)
+    def on_server_rx_rpc_request(
+        self,
+        ch: BlockingChannel,
+        method_frame: Method,
+        properties: Parameters,
+        _body: str,
+    ) -> None:
+        body = dill.loads(_body)
         logging.info("RPC Server got request: %s", body)
 
         res = {"key": body["key"]}
