@@ -6,7 +6,7 @@ from typing import Callable, Dict, Optional, TypeVar, overload
 
 import dill
 import pika
-from pika.channel import BlockingChannel
+from pika.adapters.blocking_connection import BlockingChannel
 from pika.connection import Parameters
 from pika.exceptions import AMQPConnectionError, ChannelClosedByBroker
 from pika.frame import Method
