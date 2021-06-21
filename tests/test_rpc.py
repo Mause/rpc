@@ -9,8 +9,8 @@ from mause_rpc.client import Client
 from mause_rpc.server import Server
 
 
-@patch('mause_rpc.client.BlockingConnection')
-def test_client(bc):
+@patch('mause_rpc.client.BlockingConnection', spec=BlockingConnection)
+def test_client(bc: BlockingConnection) -> None:
     bc = bc.return_value
     bc.add_callback_threadsafe.side_effect = lambda func: func()
     bc.channel.return_value = MagicMock(
@@ -26,11 +26,11 @@ def test_client(bc):
 
 
 @patch('mause_rpc.server.pika.BlockingConnection', spec=BlockingConnection)
-def test_server(bc):
+def test_server(bc: BlockingConnection) -> None:
     server = Server('', '')
 
     @server.register
-    def hello(name):
+    def hello(name: str) -> str:
         return 'hello ' + name
 
     ch = MagicMock(spec=BlockingChannel)
@@ -39,7 +39,7 @@ def test_server(bc):
         ch=ch,
         method_frame=MagicMock(),
         properties=BasicProperties(reply_to='reply_to'),
-        body=dill.dumps(
+        _body=dill.dumps(
             {'key': 'key', 'args': ('mark',), 'kwargs': {}, 'method': 'hello'}
         ),
     )
@@ -48,15 +48,15 @@ def test_server(bc):
     assert dill.loads(call.kwargs['body']) == {'key': 'key', 'body': 'hello mark'}
 
 
-def test_register():
+def test_register() -> None:
     server = Server('', MagicMock())
 
     @server.register('hello')
-    def world():
+    def world() -> None:
         ...
 
     @server.register
-    def help():
+    def help() -> None:
         ...
 
     assert set(server._methods) == {'hello', 'help'}

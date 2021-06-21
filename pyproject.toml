@@ -18,6 +18,14 @@ retry = "^0.9.2"
 [tool.black]
 skip_string_normalization=true
 
+[tool.mypy]
+ignore_missing_imports=true
+disallow_untyped_calls=true
+disallow_untyped_defs=true
+disallow_incomplete_defs=true
+check_untyped_defs=true
+disallow_untyped_decorators=true
+
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.4"
 mypy = "^0.902"

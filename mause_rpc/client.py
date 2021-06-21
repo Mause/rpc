@@ -4,19 +4,21 @@ from concurrent.futures import Future
 from dataclasses import dataclass, field
 from functools import partial
 from threading import Thread
-from typing import Dict, Optional
+from typing import Any, Callable, Dict, Optional, TypeVar
 from uuid import uuid4
 
 import dill
 from pika import BasicProperties, BlockingConnection
 from pika.adapters.blocking_connection import BlockingChannel
 from pika.connection import Parameters
+from pika.frame import Method
 from retry import retry
 
 logging.getLogger("pika").setLevel(logging.WARN)
 logger = logging.getLogger(__name__)
 
 REPLY_TO = "amq.rabbitmq.reply-to"
+T = TypeVar('T')
 
 
 @dataclass
@@ -52,7 +54,7 @@ class Client:
 
         return self
 
-    def call(self, method, *args, **kwargs):
+    def call(self, method: str, *args: Any, **kwargs: Any) -> T:
         assert self.conn and self.channel
 
         f: Future = Future()
@@ -70,11 +72,17 @@ class Client:
         )
         return f.result(timeout=self.timeout)
 
-    def __getattr__(self, method):
+    def __getattr__(self, method: str) -> Callable:
         return partial(self.call, method)
 
-    def recieve(self, ch, method_frame, properties, body):
-        body = dill.loads(body)
+    def recieve(
+        self,
+        ch: BlockingChannel,
+        method_frame: Method,
+        properties: BasicProperties,
+        _body: str,
+    ) -> None:
+        body = dill.loads(_body)
         f = self._waiting.pop(body["key"])
         if "body" in body:
             f.set_result(body["body"])
@@ -85,6 +93,6 @@ class Client:
 
 
 def get_client(
-    server_queue: str, connection_parameters: Parameters, timeout=10
+    server_queue: str, connection_parameters: Parameters, timeout: int = 10
 ) -> Client:
     return Client(server_queue, timeout, connection_parameters).connect()
