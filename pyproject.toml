@@ -25,6 +25,8 @@ disallow_untyped_defs=true
 disallow_incomplete_defs=true
 check_untyped_defs=true
 disallow_untyped_decorators=true
+warn_redundant_casts=true
+warn_unused_ignores=true
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.4"
