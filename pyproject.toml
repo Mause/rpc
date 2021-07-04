@@ -8,6 +8,7 @@ keywords = [ "rabbitmq", "rpc",]
 readme = "README.md"
 license = "MIT"
 include = [ "mause_rpc/py.typed",]
+classifiers = [ "Typing :: Typed", "Intended Audience :: Developers", "License :: OSI Approved :: MIT License", "Development Status :: 3 - Alpha", "Topic :: Software Development :: Libraries :: Python Modules" ]
 
 [tool.poetry.dependencies]
 python = "^3.8"
