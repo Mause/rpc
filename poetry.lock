@@ -230,7 +230,7 @@ python-versions = "*"
 
 [[package]]
 name = "isort"
-version = "5.9.1"
+version = "5.9.2"
 description = "A Python utility / library to sort Python imports."
 category = "dev"
 optional = false
@@ -718,7 +718,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "f5523b9cbc210ce7bb917cd9287c678aab88e18e672b151cb37b57ecd9475e58"
+content-hash = "cb104d4dcc6e8bfecc6b935e743d424f2c9ab630d02b1c99b1b1bbdef45aca0e"
 
 [metadata.files]
 appdirs = [
@@ -852,8 +852,8 @@ iniconfig = [
     {file = "iniconfig-1.0.0.tar.gz", hash = "sha256:aa0b40f50a00e72323cb5d41302f9c6165728fd764ac8822aa3fff00a40d56b4"},
 ]
 isort = [
-    {file = "isort-5.9.1-py3-none-any.whl", hash = "sha256:8e2c107091cfec7286bc0f68a547d0ba4c094d460b732075b6fba674f1035c0c"},
-    {file = "isort-5.9.1.tar.gz", hash = "sha256:83510593e07e433b77bd5bff0f6f607dbafa06d1a89022616f02d8b699cfcd56"},
+    {file = "isort-5.9.2-py3-none-any.whl", hash = "sha256:eed17b53c3e7912425579853d078a0832820f023191561fcee9d7cae424e0813"},
+    {file = "isort-5.9.2.tar.gz", hash = "sha256:f65ce5bd4cbc6abdfbe29afc2f0245538ab358c14590912df638033f157d555e"},
 ]
 jeepney = [
     {file = "jeepney-0.4.3-py3-none-any.whl", hash = "sha256:d6c6b49683446d2407d2fe3acb7a368a77ff063f9182fe427da15d622adc24cf"},
