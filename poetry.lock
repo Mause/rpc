@@ -364,9 +364,9 @@ optional = false
 python-versions = "*"
 
 [package.extras]
-gevent = ["gevent"]
-tornado = ["tornado"]
 twisted = ["twisted"]
+tornado = ["tornado"]
+gevent = ["gevent"]
 
 [[package]]
 name = "pkginfo"
@@ -416,7 +416,7 @@ twine = "*"
 
 [[package]]
 name = "pre-commit"
-version = "2.18.1"
+version = "2.20.0"
 description = "A framework for managing and maintaining multi-language pre-commit hooks."
 category = "dev"
 optional = false
@@ -737,7 +737,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "d18897da185e57d833723a8c44a6ccc3f4ff4edf031c7115bba63b0b9cd6d4f4"
+content-hash = "fd3d89559910890c94dfba109252ffed529f8e5ab3112e640621e609b358c32f"
 
 [metadata.files]
 appdirs = [
@@ -968,8 +968,8 @@ poetry-publish = [
     {file = "poetry_publish-0.4.1-py3-none-any.whl", hash = "sha256:c7825a45549f2cd75c93bc997b2256f80d3cb6732f1c0a0b54be50bc15ec0dfc"},
 ]
 pre-commit = [
-    {file = "pre_commit-2.18.1-py2.py3-none-any.whl", hash = "sha256:02226e69564ebca1a070bd1f046af866aa1c318dbc430027c50ab832ed2b73f2"},
-    {file = "pre_commit-2.18.1.tar.gz", hash = "sha256:5d445ee1fa8738d506881c5d84f83c62bb5be6b2838e32207433647e8e5ebe10"},
+    {file = "pre_commit-2.20.0-py2.py3-none-any.whl", hash = "sha256:51a5ba7c480ae8072ecdb6933df22d2f812dc897d5fe848778116129a681aac7"},
+    {file = "pre_commit-2.20.0.tar.gz", hash = "sha256:a978dac7bc9ec0bcee55c18a277d553b0f419d259dadb4b9418ff2d00eb43959"},
 ]
 py = [
     {file = "py-1.10.0-py2.py3-none-any.whl", hash = "sha256:3b80836aa6d1feeaa108e046da6423ab8f6ceda6468545ae8d02d9d58d18818a"},
