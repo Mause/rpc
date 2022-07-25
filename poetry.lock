@@ -673,7 +673,7 @@ tqdm = ">=4.14"
 
 [[package]]
 name = "types-retry"
-version = "0.9.6"
+version = "0.9.9"
 description = "Typing stubs for retry"
 category = "dev"
 optional = false
@@ -737,7 +737,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "e7bfd46481c64724643f4bbe362149238148159dd91a3b23e7fdc5a5c37c5923"
+content-hash = "42da85b4e6937cf6c1f097e2552e631765d4226e9ccf8c5f337991b9ee83bce9"
 
 [metadata.files]
 appdirs = [
@@ -1083,8 +1083,8 @@ twine = [
     {file = "twine-3.1.1.tar.gz", hash = "sha256:d561a5e511f70275e5a485a6275ff61851c16ffcb3a95a602189161112d9f160"},
 ]
 types-retry = [
-    {file = "types-retry-0.9.6.tar.gz", hash = "sha256:76009581fca7546795c5ed19629c995fe28893e1e7dec53c7b127cd6d1d87a6b"},
-    {file = "types_retry-0.9.6-py3-none-any.whl", hash = "sha256:b42b67dd8aee960be244e1aeb474f13ee3238e19956cec1aa3f6e8b10a90b942"},
+    {file = "types-retry-0.9.9.tar.gz", hash = "sha256:b1087b274680b542c796549e8488898d0b22cd89988ef1016ef56d4367ff4f41"},
+    {file = "types_retry-0.9.9-py3-none-any.whl", hash = "sha256:c5208407527661c37ee826a81abe8e7560e138c8deeccce61bf3f5441f2085f0"},
 ]
 typing-extensions = [
     {file = "typing_extensions-4.1.1-py3-none-any.whl", hash = "sha256:21c85e0fe4b9a155d0799430b0ad741cdce7e359660ccbd8b530613e8df88ce2"},
