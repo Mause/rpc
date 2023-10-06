@@ -970,13 +970,13 @@ tqdm = ">=4.14"
 
 [[package]]
 name = "types-retry"
-version = "0.9.6"
+version = "0.9.9.4"
 description = "Typing stubs for retry"
 optional = false
 python-versions = "*"
 files = [
-    {file = "types-retry-0.9.6.tar.gz", hash = "sha256:76009581fca7546795c5ed19629c995fe28893e1e7dec53c7b127cd6d1d87a6b"},
-    {file = "types_retry-0.9.6-py3-none-any.whl", hash = "sha256:b42b67dd8aee960be244e1aeb474f13ee3238e19956cec1aa3f6e8b10a90b942"},
+    {file = "types-retry-0.9.9.4.tar.gz", hash = "sha256:e4731dc684b56b875d9746459ad665d3bc281a56b530acdf1c97730167799941"},
+    {file = "types_retry-0.9.9.4-py3-none-any.whl", hash = "sha256:f29760a9fe8b1fefe253e5fe6be7e4c0eba243932c600e0eccffb42a21d17765"},
 ]
 
 [[package]]
@@ -1051,4 +1051,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "6ca9a31ba440c9c0829f344fa7720ab6f332c191714d47fa37381be372e833d3"
+content-hash = "bb2ad6f359a21da6d8b75dc054b1ba0edb9cd7614d93f75d4bf1d6f0f1a1ee1b"
