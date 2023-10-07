@@ -6,6 +6,11 @@ jobs:
   build_backend:
     runs-on: ubuntu-latest
 
+    services:
+      mqqt:
+        image: 'rabbitmq:3.8.9'
+        ports: ['5672:5672']
+
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python 3.8
