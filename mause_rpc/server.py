@@ -27,7 +27,7 @@ class Server:
     '''
     A simple RPC server that uses RabbitMQ as a message broker.
     '''
-    
+
     server_queue: str
     connection_params: Parameters
     server_name: Optional[str] = None

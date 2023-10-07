@@ -8,7 +8,7 @@ from concurrent.futures import Future
 from dataclasses import dataclass, field
 from functools import partial
 from threading import Thread
-from typing import Any, Callable, Dict, Optional, TypeVar, Type
+from typing import Any, Callable, Dict, Optional, TypeVar
 from uuid import uuid4
 
 import dill
