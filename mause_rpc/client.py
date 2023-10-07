@@ -4,7 +4,7 @@ from concurrent.futures import Future
 from dataclasses import dataclass, field
 from functools import partial
 from threading import Thread
-from typing import Any, Callable, Dict, Optional, TypeVar
+from typing import Any, Callable, Dict, Optional, TypeVar, Type
 from uuid import uuid4
 
 import dill
@@ -54,7 +54,7 @@ class Client:
 
         return self
 
-    def call(self, method: str, *args: Any, **kwargs: Any) -> T:
+    def call(self, method: str, *args: Any, **kwargs: Any) -> Any:
         assert self.conn and self.channel
 
         f: Future = Future()
