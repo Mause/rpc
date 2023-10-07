@@ -1,3 +1,7 @@
+'''
+A simple RPC server that uses RabbitMQ as a message broker.
+'''
+
 import logging
 import socket
 from dataclasses import dataclass, field
@@ -20,6 +24,10 @@ T = TypeVar('T')
 
 @dataclass
 class Server:
+    '''
+    A simple RPC server that uses RabbitMQ as a message broker.
+    '''
+
     server_queue: str
     connection_params: Parameters
     server_name: Optional[str] = None
@@ -27,10 +35,20 @@ class Server:
 
     @overload
     def register(self, method: str) -> Callable[[Callable[..., T]], Callable[..., T]]:
+        '''
+        Register a method to be called by the server.
+
+        Uses the given string as the RPC method name.
+        '''
         ...
 
     @overload
     def register(self, method: Callable[..., T]) -> Callable[..., T]:
+        '''
+        Register a method to be called by the server.
+
+        Uses the method name as the RPC method name.
+        '''
         ...
 
     def register(self, method):  # type: ignore
@@ -47,6 +65,10 @@ class Server:
     @retry(ChannelClosedByBroker, delay=10, jitter=3)
     @retry(AMQPConnectionError, delay=5, jitter=3)
     def serve(self) -> None:
+        '''
+        Start the server and wait for requests.
+        '''
+
         with pika.BlockingConnection(self.connection_params) as conn:
             channel = conn.channel()
 
