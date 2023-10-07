@@ -1,3 +1,4 @@
+from threading import Thread
 from unittest.mock import MagicMock, patch
 
 import dill
@@ -5,8 +6,24 @@ from pika import BasicProperties, BlockingConnection
 from pika.adapters.blocking_connection import BlockingChannel
 from pika.connection import Parameters
 
-from mause_rpc.client import Client
+from mause_rpc.client import Client, get_client
 from mause_rpc.server import Server
+
+
+def test_combined() -> None:
+    rpc_queue = 'rpc_queue'
+    rabbitmq_url = None
+    server = Server(rpc_queue, rabbitmq_url)
+
+    @server.register
+    def hello(name: str) -> str:
+        return 'hello ' + name
+
+    Thread(target=server.serve, daemon=True).start()
+
+    client = get_client(rpc_queue, rabbitmq_url)
+
+    assert client.hello('John') == 'hello John'
 
 
 @patch('mause_rpc.client.BlockingConnection', spec=BlockingConnection)
