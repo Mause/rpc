@@ -1,3 +1,7 @@
+'''
+A client for a remote procedure call server.
+'''
+
 import logging
 import time
 from concurrent.futures import Future
@@ -23,6 +27,10 @@ T = TypeVar('T')
 
 @dataclass
 class Client:
+    '''
+    A client for a remote procedure call server.
+    '''
+
     server_queue: str
     timeout: int
     connection_parameters: Parameters
@@ -43,6 +51,9 @@ class Client:
             self.connect()
 
     def connect(self) -> 'Client':
+        '''
+        Connect to the server.
+        '''
         self.conn = BlockingConnection(self.connection_parameters)
         self.channel = self.conn.channel()
 
@@ -55,6 +66,9 @@ class Client:
         return self
 
     def call(self, method: str, *args: Any, **kwargs: Any) -> Any:
+        '''
+        Call a remote method.
+        '''
         assert self.conn and self.channel
 
         f: Future = Future()
@@ -95,4 +109,7 @@ class Client:
 def get_client(
     server_queue: str, connection_parameters: Parameters, timeout: int = 10
 ) -> Client:
+    '''
+    Get a client for a remote procedure call server.
+    '''
     return Client(server_queue, timeout, connection_parameters).connect()
