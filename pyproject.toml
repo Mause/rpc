@@ -17,7 +17,7 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.8.1"
 dill = "^0.3.1"
 pika = "^1.1.0"
 retry = "^0.9.2"
