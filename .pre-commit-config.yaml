@@ -15,8 +15,8 @@ repos:
     rev: 5.12.0 # Use the revision sha / tag you want to point at
     hooks:
       - id: isort
-  - repo: https://github.com/humitos/mirrors-autoflake
-    rev: v1.1
+  - repo: https://github.com/PyCQA/autoflake
+    rev: v1.3
     hooks:
       - id: autoflake
   - repo: https://github.com/asottile/pyupgrade
