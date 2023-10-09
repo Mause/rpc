@@ -46,7 +46,7 @@ class Client:
         logger.debug('starting worker listening on %s', self.server_queue)
         try:
             self.channel.start_consuming()
-        except Exception as e:
+        except Exception:
             logger.exception('worker died')
             self.connect()
 
