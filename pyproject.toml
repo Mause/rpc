@@ -36,7 +36,7 @@ warn_redundant_casts = true
 warn_unused_ignores = true
 
 [tool.poetry.dev-dependencies]
-pytest = "^7.4.2"
+pytest = "^7.4.4"
 mypy = "^1.6"
 black = "^23.9"
 flake8 = "^6.0.0"
