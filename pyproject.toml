@@ -38,7 +38,7 @@ warn_unused_ignores = true
 [tool.poetry.dev-dependencies]
 pytest = "^7.4.2"
 mypy = "^1.6"
-black = "^23.9"
+black = "^24.1"
 flake8 = "^7.0.0"
 isort = "^5.10.1"
 poetry-publish = "^0.5.0"
