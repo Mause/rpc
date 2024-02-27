@@ -19,7 +19,7 @@ jobs:
           python-version: 3.8
       - name: Cache poetry virtualenv
         id: cache-poetry
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.local/share/virtualenvs
           key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
