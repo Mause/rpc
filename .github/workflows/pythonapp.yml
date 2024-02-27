@@ -8,7 +8,7 @@ jobs:
 
     services:
       mqqt:
-        image: 'rabbitmq:3.12.11'
+        image: 'rabbitmq:3.13.0'
         ports: ['5672:5672']
 
     steps:
