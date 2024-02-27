@@ -6,7 +6,7 @@ import logging
 import socket
 from dataclasses import dataclass, field
 from functools import partial
-from typing import Callable, Dict, Optional, TypeVar, overload, NoReturn
+from typing import Callable, Dict, NoReturn, Optional, TypeVar, overload
 
 import dill
 import pika
