@@ -6,7 +6,7 @@ import logging
 import socket
 from dataclasses import dataclass, field
 from functools import partial
-from typing import Callable, Dict, Optional, TypeVar, overload
+from typing import Callable, Dict, Optional, TypeVar, overload, NoReturn
 
 import dill
 import pika
@@ -64,7 +64,7 @@ class Server:
     @retry(socket.gaierror, delay=10, jitter=3)
     @retry(ChannelClosedByBroker, delay=10, jitter=3)
     @retry(AMQPConnectionError, delay=5, jitter=3)
-    def serve(self) -> None:
+    def serve(self) -> NoReturn:
         '''
         Start the server and wait for requests.
         '''
