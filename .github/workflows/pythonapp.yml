@@ -6,6 +6,10 @@ jobs:
   build_backend:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        python-version: [3.9, 3.10, 3.11]
+
     services:
       mqqt:
         image: 'rabbitmq:3.12.11'
@@ -13,10 +17,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python 3.8
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.8
+          python-version: ${{ matrix.python-version }}
       - name: Cache poetry virtualenv
         id: cache-poetry
         uses: actions/cache@v3
