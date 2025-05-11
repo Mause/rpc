@@ -35,7 +35,7 @@ disallow_untyped_decorators = true
 warn_redundant_casts = true
 warn_unused_ignores = true
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 pytest = "^7.4.2"
 mypy = "^1.6"
 black = "^23.9"
