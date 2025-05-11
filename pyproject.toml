@@ -1,9 +1,10 @@
-[tool.poetry]
+[project]
 name = "mause_rpc"
 version = "0.0.21"
 description = "A dumb as hell rpc implementation built on rabbitmq"
-authors = ["Elliana May <me@mause.me>"]
-repository = "https://github.com/Mause/rpc"
+authors = [
+    {name = "Elliana May", email = "me@mause.me"},
+]
 keywords = ["rabbitmq", "rpc"]
 readme = "README.md"
 license = "MIT"
@@ -15,12 +16,15 @@ classifiers = [
     "Development Status :: 3 - Alpha",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
+requires-python = "<4.0.0,>=3.8.1"
+dependencies = [
+    "dill<1.0.0,>=0.3.1",
+    "pika<2.0.0,>=1.1.0",
+    "retry<1.0.0,>=0.9.2",
+]
 
-[tool.poetry.dependencies]
-python = "^3.8.1"
-dill = "^0.3.1"
-pika = "^1.1.0"
-retry = "^0.9.2"
+[project.urls]
+repository = "https://github.com/Mause/rpc"
 
 [tool.black]
 skip_string_normalization = true
