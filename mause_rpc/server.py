@@ -65,7 +65,7 @@ class Server:
     @retry(socket.gaierror, delay=10, jitter=3)
     @retry(ChannelClosedByBroker, delay=10, jitter=3)
     @retry(AMQPConnectionError, delay=5, jitter=3)
-    def serve(self) -> NoReturn: # type: ignore[misc]
+    def serve(self) -> NoReturn:  # type: ignore[misc]
         '''
         Start the server and wait for requests.
         '''
