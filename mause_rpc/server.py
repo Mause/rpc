@@ -18,6 +18,7 @@ from retry import retry
 
 logging.basicConfig(level=logging.INFO)
 logging.getLogger("pika").setLevel(logging.WARN)
+logger = logging.getLogger(__name__)
 
 T = TypeVar('T')
 
@@ -80,7 +81,7 @@ class Server:
                 self.on_server_rx_rpc_request,
                 consumer_tag=self.server_name,
             )
-            logging.info("Ready, waiting on work on %s", self.server_queue)
+            logger.info("Ready, waiting on work on %s", self.server_queue)
             channel.start_consuming()
 
     def on_server_rx_rpc_request(
@@ -91,14 +92,14 @@ class Server:
         _body: str,
     ) -> None:
         body = dill.loads(_body)
-        logging.info("RPC Server got request: %s", body)
+        logger.info("RPC Server got request: %s", body)
 
         res = {"key": body["key"]}
 
         try:
             res["body"] = self._methods[body["method"]](*body["args"], **body["kwargs"])
         except Exception as e:
-            logging.exception("Call to %s caused exception", body["method"])
+            logger.exception("Call to %s caused exception", body["method"])
             res["exception"] = e
 
         ch.basic_publish("", routing_key=properties.reply_to, body=dill.dumps(res))
