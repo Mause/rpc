@@ -69,11 +69,9 @@ def test_register() -> None:
     server = Server('', MagicMock())
 
     @server.register('hello')
-    def world() -> None:
-        ...
+    def world() -> None: ...
 
     @server.register
-    def help() -> None:
-        ...
+    def help() -> None: ...
 
     assert set(server._methods) == {'hello', 'help'}
